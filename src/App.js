@@ -1,6 +1,8 @@
 import './index.css';
 import React,{useState} from 'react'
-import Employee from './Employee';
+import Employee from './components/Employee';
+import {v4 as uuidv4} from 'uuid'
+
 
 function App() {
   const [role,setRole]=useState('dev');
@@ -49,6 +51,7 @@ function App() {
       {employees.map((employee) => {
         return(
           <Employee
+            key={uuidv4()}
             name={employee.name}
             role={employee.role}
             img={employee.img}
