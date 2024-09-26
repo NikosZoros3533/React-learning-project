@@ -13,12 +13,12 @@ function Employee(props){
       <p class="text-lg text-black font-semibold">{props.name}</p>
       <p class="text-slate-500 font-medium">{props.role}</p>
     </div>
-    <EditEmployee id={props.id} name={props.name} role={props.role} updateEmployee={props.updateEmployee}/>
+    {props.editEmployee}
 
   </div>
 </div>
-    )
+    );
 
 }
 
-export default Employee
+export default Employee;
