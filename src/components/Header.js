@@ -1,19 +1,19 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { NavLink } from 'react-router-dom'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Employees', href: '/employees'},
+  { name: 'Dictionary', href: '/dictionary' },
+  { name: 'Definition', href: '/other'},
+  { name: 'Calendar', href: '/other2'},
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+
 
 export default function Header(props) {
   return (
+    <>
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-14 items-center justify-between">
@@ -37,17 +37,18 @@ export default function Header(props) {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <NavLink
                     key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      item.current ? 'no-underline bg-gray-900 text-white' : 'no-underline text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                    )}
+                    to={item.href}
+                    className={({isActive})=>{
+                        return (
+                            'no-underline rounded-md px-3 py-2 text-sm font-medium ' + 
+                            (isActive ?  "bg-gray-900 text-white" :'text-gray-300 hover:bg-gray-700 hover:text-white')
+
+                )}}
                   >
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
             </div>
@@ -98,22 +99,27 @@ export default function Header(props) {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              as="a"
-              href={item.href}
-              aria-current={item.current ? 'page' : undefined}
-              className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
-              )}
+            <NavLink
+            key={item.name}
+            to={item.href}
+            className={({isActive})=>{
+                return (
+                    'no-underline rounded-md px-3 py-2 text-sm font-medium ' + 
+                    (isActive ?  "bg-gray-900 text-white" :'text-gray-300 hover:bg-gray-700 hover:text-white')
+
+            )}}
             >
-              {item.name}
-            </DisclosureButton>
+            {item.name}
+          </NavLink>
           ))}
         </div>
       </DisclosurePanel>
-      {props.children}
-    </Disclosure>   
+      
+    </Disclosure> 
+    <div className=' bg-gray-300 min-h-screen p-2'>
+         {props.children}
+    </div> 
+    </>
+
   )
 }
