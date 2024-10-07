@@ -17,7 +17,7 @@ export default function DefinitionSearch(){
             <input 
             className="shrink min-w-0 px-2 py-1 rounded"
             placeholder="Dinosaur"
-            type="text" 
+            type="text"  
             onChange={(e)=>{
                 setWord(e.target.value)
             }} />

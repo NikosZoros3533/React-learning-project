@@ -1,8 +1,8 @@
 import { useEffect,useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {v4 as uuidv4} from 'uuid'
-import NotFound from "../components/NotFound";
-import DefinitionSearch from "../components/DefinitionSearch";
+import NotFound from "./NotFound";
+import DefinitionSearch from "./DefinitionSearch";
 
 
 export default function Definition(){
